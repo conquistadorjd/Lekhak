@@ -1,0 +1,79 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.js"></script>
+
+<div class="row">
+  <div class="col-1"></div>
+  <div class="col">
+    <h2>{{ blog_post.post_title|title}}</h2><hr>
+    <div class="mdchange">{{ blog_post.post_content }}</div>
+    <hr>
+    <p>This post is written by {{ blog_post.post_author}} </p>
+    <p> Tags : 
+      {% for tag in blog_post.post_tags.all %}
+        <a href="/tag/{{tag}}">{{tag}}</a>
+      {% endfor %} 
+    </p>
+    <div> 
+      Share it : 
+      <i class="fa fa-facebook-square" style="font-size:48px;color:#3b5998"></i>   &nbsp;
+      <i class="fa fa-twitter" style="font-size:48px;color:#00acee"></i>   &nbsp;
+      <!-- <i class="fa fa-google" style="font-size:48px;color:#3cba54"></i>  -->
+      <i class="fa fa-linkedin-square" style="font-size:48px;color:#0e76a8"></i> &nbsp;
+      <i class="fa fa-reddit" style="font-size:48px;color:#FF4500 "></i> 
+        
+    </div>    
+    <div class="card-body">
+      {% if new_comment %}
+      <div class="alert alert-success" role="alert">
+        Your comment is awaiting moderation
+      </div>
+      {% else %}
+      <h3>Leave a comment</h3>
+      <form method="post" style="margin-top: 1.3em;">
+        {{ comment_form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+      </form>
+      {% endif %}
+    </div>
+
+    {% for comment in comments %}
+      <div class="card">
+        <h5 class="card-header">by {{ comment.comment_author }}</h5>
+        <div class="card-body">
+          <!-- <h5 class="card-title">Special title treatment</h5> -->
+          <p class="card-text">{{ comment.comment_content }}</p>
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
+      </div> <br>
+    {% endfor %}      
+  </div>
+  <div class="col-2"> </div>
+</div>
+
+<script>
+$(document).ready(function(){
+
+    var converter = new showdown.Converter({'ghCodeBlocks': true});
+    // var text      = '### hello, markdown!';
+    var text        = $('.mdchange').text();
+    html      = converter.makeHtml(text);
+    $(".mdchange").html(html);  
+    var thisConverterSpecificOptions = converter.getOptions();
+    console.log(" hello");
+    console.log(thisConverterSpecificOptions)
+    // $(".test").hide();
+    // console.log(html);
+  }); 
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+<script>
+  $(document).ready(function(){
+      hljs.highlightAll();
+  });
+  </script>
+
+{% endblock %}
