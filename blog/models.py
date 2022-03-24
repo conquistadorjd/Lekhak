@@ -12,7 +12,16 @@ STATUS_CHOICES = (
     ('published','published'),
 )
 # Create your models here.
+class BlogMeta(models.Model):
+    meta_id         =   models.AutoField(primary_key=True)
+    meta_key        =   models.CharField(max_length=255)
+    meta_value      =   RichTextField()
 
+    def __str__(self):
+        return self.meta_key
+
+    def get_meta_value(self):
+        return self.meta_value
 
 class Post(models.Model):
     post_id         = models.AutoField(primary_key=True)

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post, PostMeta, Comment, CommentMeta, Tag, Category
+from .models import Post, PostMeta, Comment, CommentMeta, Tag, Category, BlogMeta
 from .forms import CommentForm
 
 def index(request):
@@ -8,6 +8,9 @@ def index(request):
     context = Post.objects.filter(post_status='published').order_by('-post_date')
     tags = Tag.objects.all()
     print("*** context", context)
+
+    blog_title = get_object_or_404(BlogMeta, meta_key='title').get_meta_value()
+    print("*** blog_title : ", blog_title)
     return render(request, 'blog/index.html',{'context':context, 'tags':tags})  
 
 
@@ -46,7 +49,9 @@ def post_tag(request, tag_slug):
     return render(request, 'blog/index.html',{'context':context, 'tags':tags})  
 
 def aboutus(request):
-    return render(request, 'blog/aboutus.html')  
+    aboutus = get_object_or_404(BlogMeta, meta_key='aboutus').get_meta_value()
+    return render(request, 'blog/aboutus.html',{'aboutus': aboutus})  
 
 def contactus(request):
-    return render(request, 'blog/contactus.html')       
+    contactus = get_object_or_404(BlogMeta, meta_key='contactus').get_meta_value()
+    return render(request, 'blog/contactus.html',{'contactus': contactus})       

@@ -1,0 +1,42 @@
+[
+    {
+        "model": "blog.blogmeta",
+        "pk": 1,
+        "fields": {
+            "meta_key": "title",
+            "meta_value": "<p>Your awesome blog name</p>"
+        }
+    },
+    {
+        "model": "blog.blogmeta",
+        "pk": 2,
+        "fields": {
+            "meta_key": "tagline",
+            "meta_value": "<p>Your awesome blog tagline</p>"
+        }
+    },
+    {
+        "model": "blog.blogmeta",
+        "pk": 3,
+        "fields": {
+            "meta_key": "admin_email",
+            "meta_value": "<p>admin@yourblog.com</p>"
+        }
+    },
+    {
+        "model": "blog.blogmeta",
+        "pk": 4,
+        "fields": {
+            "meta_key": "aboutus",
+            "meta_value": "<p>This is sample About Us page created by default by lekhak blogging engine. If you need, you can add your custom information here.</p>\r\n\r\n<p>Happy Blogging...</p>"
+        }
+    },
+    {
+        "model": "blog.blogmeta",
+        "pk": 5,
+        "fields": {
+            "meta_key": "contactus",
+            "meta_value": "<p>You can contact us at contactus@lekhak-samlle-blog.com.</p>"
+        }
+    }
+]
