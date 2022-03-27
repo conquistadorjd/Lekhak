@@ -15,13 +15,13 @@ python3 manage.py loaddata  BlogMeta.json
 
 ---
 # Planned features
-### Column Name
 - [x] Create BlogInfo table
 - [ ] Create theme structure  
 - [ ] enable requirements.txt for postgresql and MySQL
 - [ ] Create standard functions for  generic blog information
   - [X] Function in model to return specific details
-
-
+---
+# Development and Contribution
+If you would like to contribute and have you name displayed here, please let me know.
 
 

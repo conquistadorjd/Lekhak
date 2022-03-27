@@ -3,22 +3,17 @@ from .models import Post, PostMeta, Comment, CommentMeta, Tag, Category, BlogMet
 from .forms import CommentForm
 
 def index(request):
-    print("*** Inside index",)
-    # context = Post.objects.filter(post_status='published',post_group__exact="")
     context = Post.objects.filter(post_status='published').order_by('-post_date')
     tags = Tag.objects.all()
-    print("*** context", context)
-
     blog_title = get_object_or_404(BlogMeta, meta_key='title').get_meta_value()
     print("*** blog_title : ", blog_title)
-    return render(request, 'blog/index.html',{'context':context, 'tags':tags})  
+    return render(request, 'blog/index.html',{'context':context, 'tags':tags, 'blog_title': blog_title})  
 
 
 def detail(request, post_slug):
     # blog_post = Post.objects.get(post_slug=post_slug)
     blog_post = get_object_or_404(Post, post_slug=post_slug)
-    print("*** === post_slug : ", post_slug)
-    # comments = get_object_or_404(Comment,comment_post_id=blog_post.post_id) # works only for one value
+    # print("*** === post_slug : ", post_slug)
     comments = Comment.objects.filter(comment_post_id=blog_post.post_id,comment_status='published')
     # print("*** blog_post.post_id", blog_post.post_id)
     # print("** blog_Post: ", blog_post.post_slug)

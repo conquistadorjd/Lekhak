@@ -7,7 +7,7 @@
   <div class="col-1"></div>
   <div class="col">
     <h2>{{ blog_post.post_title|title}}</h2><hr>
-    <div class="mdchange">{{ blog_post.post_content }}</div>
+    <div>{{ blog_post.post_content }}</div>
     <hr>
     <p>This post is written by {{ blog_post.post_author}} </p>
     <p> Tags : 
@@ -52,28 +52,5 @@
   </div>
   <div class="col-2"> </div>
 </div>
-
-<script>
-$(document).ready(function(){
-
-    var converter = new showdown.Converter({'ghCodeBlocks': true});
-    // var text      = '### hello, markdown!';
-    var text        = $('.mdchange').text();
-    html      = converter.makeHtml(text);
-    $(".mdchange").html(html);  
-    var thisConverterSpecificOptions = converter.getOptions();
-    console.log(" hello");
-    console.log(thisConverterSpecificOptions)
-    // $(".test").hide();
-    // console.log(html);
-  }); 
-</script>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
-<script>
-  $(document).ready(function(){
-      hljs.highlightAll();
-  });
-  </script>
 
 {% endblock %}
